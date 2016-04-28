@@ -93,7 +93,7 @@ public abstract class AppWebActivity extends AppBaseActivity {
         }
         // overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
-//
+
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {
 //        switch (item.getItemId()) {
