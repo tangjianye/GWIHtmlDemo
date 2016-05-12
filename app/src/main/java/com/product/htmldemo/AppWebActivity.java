@@ -36,6 +36,7 @@ public abstract class AppWebActivity extends AppBaseActivity {
     private void initViews() {
         mWebView = (WebView) findViewById(R.id.web_container);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
     }
 
     private void initEvents() {
