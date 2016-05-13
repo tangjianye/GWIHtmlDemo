@@ -11,9 +11,28 @@ public class MainActivity extends AppWebActivity {
         // loadUrl("file:///android_asset/htmlRed/index.html");
         loadUrl("file:///android_asset/index.html");
 
+
+        // loadUrl("http://www.baidu.com/");
+
         // loadUrl("file:///mnt/sdcard/html/index.html");
         // loadUrl("content://com.android.htmlfileprovider/mnt/sdcard/html/index.html");
         // loadUrl("content://com.android.htmlfileprovider/sdcard/html/index.html");
         // loadUrl("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
+
+
+//        Intent intent = new Intent();
+//        intent.setAction("android.intent.action.VIEW");
+//        Uri content_url = Uri.parse("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
+//        intent.setData(content_url);
+//        startActivity(intent);
+//        finish();
+
+//        Intent intent= new Intent();
+//        intent.setAction("android.intent.action.VIEW");
+//        Uri content_url = Uri.parse("http://www.baidu.com");
+//        // Uri content_url = Uri.parse("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
+//        intent.setData(content_url);
+//        intent.setClassName("com.android.browser","com.android.browser.BrowserActivity");
+//        startActivity(intent);
     }
 }
