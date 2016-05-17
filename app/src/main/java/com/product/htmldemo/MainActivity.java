@@ -9,30 +9,21 @@ public class MainActivity extends AppWebActivity {
         super.onCreate(savedInstanceState);
         // loadUrl("file:///android_asset/htmlBlue/index.html");
         // loadUrl("file:///android_asset/htmlRed/index.html");
-        loadUrl("file:///android_asset/index.html");
+        // loadUrl("file:///android_asset/index.html");
 
 
         // loadUrl("http://www.baidu.com/");
 
-        // loadUrl("file:///mnt/sdcard/html/index.html");
-        // loadUrl("content://com.android.htmlfileprovider/mnt/sdcard/html/index.html");
-        // loadUrl("content://com.android.htmlfileprovider/sdcard/html/index.html");
-        // loadUrl("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
-
-
-//        Intent intent = new Intent();
-//        intent.setAction("android.intent.action.VIEW");
-//        Uri content_url = Uri.parse("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
-//        intent.setData(content_url);
-//        startActivity(intent);
-//        finish();
-
+        // 浏览器打开本地文件
 //        Intent intent= new Intent();
 //        intent.setAction("android.intent.action.VIEW");
-//        Uri content_url = Uri.parse("http://www.baidu.com");
-//        // Uri content_url = Uri.parse("content://com.android.htmlfileprovider" + Environment.getExternalStorageDirectory() + File.separator + "html" + File.separator + "index.html");
+//        // Uri content_url = Uri.parse("file:///sdcard/QieZi/files/assets/index.html");
+//        Uri content_url = Uri.parse("file:///sdcard/assets/TEST/index.html");
 //        intent.setData(content_url);
-//        intent.setClassName("com.android.browser","com.android.browser.BrowserActivity");
+//        intent.setClassName("com.tencent.mtt", "com.tencent.mtt.MainActivity");
+//        // intent.setClassName("com.android.browser","com.android.browser.BrowserActivity");
 //        startActivity(intent);
+
+        loadUrl("file:///android_asset/TEST/index.html");
     }
 }

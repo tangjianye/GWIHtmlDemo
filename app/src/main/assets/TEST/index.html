@@ -1,0 +1,400 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <title></title>
+    <style type="text/css">
+        body {
+            margin:0;
+            padding:60px;            
+        }
+        table {
+            width: 100%;            
+        }        
+        table tr.title th {
+            text-align:left;
+            width:100%;
+        }
+        table tr.title td {
+            text-align:center;
+        }
+        table.detail tr th { 
+            text-align:left;
+            width:30%;
+        }
+        table.detail tr td {
+            text-align:left;
+            width:70%;
+        }
+        #TestArea {
+            position:absolute;
+            left:0;
+            top:0;
+            margin:0;padding:0;
+            width:100%;min-width:100%;max-width:100%;
+            height:100%;min-height:100%;max-height:100%;
+            background-color:#000000;
+            color:#FFFFFF;
+            text-align:center;
+            padding-top:10%;
+        }
+        .hide {
+            display:none;
+        }
+
+    </style>
+    <!--[if lte IE 8]>
+      <script type="text/javascript" src="jquery-1.12.3.js"></script>
+    <![endif]-->
+    <!--[if gt IE 8]>
+      <script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+    <![endif]-->
+    <![if !IE]>
+    <script type="text/javascript" src="jquery-2.2.3.min.js"></script>
+    <![endif]>
+    <script type="text/javascript">
+        var UNKNOWN = 'Unknown';
+        var ENABLED = 'Enabled';
+        var DISABLED = 'Disabled';
+        var NOT_SUPPORT = 'Not Support';
+        $(document).ready(function () {
+            updateBrowserInfo();
+            updateScreenInfo();
+            updateWindowInfo();
+            updatejQueryInfo();            
+        });
+        function reload()
+        {
+            location.reload();
+        }
+        function updateBrowserInfo() {
+            var AppName = navigator.appName || UNKNOWN;
+            var AppCodeName = navigator.appCodeName || UNKNOWN;
+            var AppVersion = navigator.appVersion || UNKNOWN;
+            var AppMinorVersion = navigator.appMinorVersion || UNKNOWN;
+            var UserAgent = navigator.userAgent || UNKNOWN;
+            var OnLine = navigator.onLine || UNKNOWN;
+            var Platform = navigator.platform || UNKNOWN;
+            var CpuClass = navigator.cpuClass || UNKNOWN;
+            var SystemLanguage = navigator.systemLanguage || UNKNOWN;
+            var BrowserLanguage = navigator.browserLanguage || UNKNOWN;
+            var UserLanguage = navigator.userLanguage || UNKNOWN;
+            var CookieEnabled = navigator.cookieEnabled;
+            if (null == CookieEnabled) {
+                CookieEnabled = NOT_SUPPORT;
+            }
+            else {
+                CookieEnabled = CookieEnabled ? ENABLED : DISABLED;
+            }
+            var JavaEnabled = navigator.javaEnabled();
+            if (null == JavaEnabled) {
+                JavaEnabled = NOT_SUPPORT;
+            }
+            else {
+                JavaEnabled = JavaEnabled ? ENABLED : DISABLED;
+            }
+            $('#AppName').text(AppName);
+            $('#AppCodeName').text(AppCodeName);
+            $('#AppVersion').text(AppVersion);
+            $('#AppMinorVersion').text(AppMinorVersion);
+            $('#UserAgent').text(UserAgent);
+            $('#OnLine').text(OnLine);
+            $('#Platform').text(Platform);
+            $('#CpuClass').text(CpuClass);
+            $('#CookieEnabled').text(CookieEnabled);
+            $('#JavaEnabled').text(JavaEnabled);
+            $('#SystemLanguage').text(SystemLanguage);
+            $('#BrowserLanguage').text(BrowserLanguage);
+            $('#UserLanguage').text(UserLanguage);
+        }
+        function updateScreenInfo() {
+            var Width = screen.width || UNKNOWN;
+            var Height = screen.height || UNKNOWN;
+            var AvailWidth = screen.availWidth || UNKNOWN;
+            var AvailHeight = screen.availHeight || UNKNOWN;
+            var ColorDepth = screen.colorDepth || UNKNOWN;
+            var PixelDepth = screen.pixelDepth || UNKNOWN;
+            $('#ScreenSize').text(Width + '*' + Height);
+            $('#AvailSize').text(AvailWidth + '*' + AvailHeight);
+            $('#ColorDepth').text(ColorDepth);
+            $('#PixelDepth').text(PixelDepth);
+        }
+        function updateWindowInfo() {
+            var OuterWidth = window.outerWidth;
+            if (null == OuterWidth) {
+                OuterWidth = UNKNOWN;
+            }
+            var OuterHeight = window.outerHeight;
+            if (null == OuterHeight) {
+                OuterHeight = UNKNOWN;
+            }
+            var InnerWidth = window.innerWidth;
+            if (null == InnerWidth) {
+                InnerWidth = UNKNOWN;
+            }
+            var InnerHeight = window.innerHeight;
+            if (null == InnerHeight) {
+                InnerHeight = UNKNOWN;
+            }
+            var ScreenX = window.screenX;
+            if (null == ScreenX) {
+                ScreenX = UNKNOWN;
+            }
+            var ScreenY = window.screenY;
+            if (null == ScreenY) {
+                ScreenY = UNKNOWN;
+            }
+            var PageXOffset = window.pageXOffset;
+            if (null == PageXOffset) {
+                PageXOffset = UNKNOWN;
+            }
+            var PageYOffset = window.pageYOffset;
+            if (null == PageYOffset) {
+                PageYOffset = UNKNOWN;
+            }
+            $('#OuterSize').text(OuterWidth + '*' + OuterHeight);
+            $('#InnerSize').text(InnerWidth + '*' + InnerHeight);
+            $('#PageOffset').text(PageXOffset + ',' + PageYOffset);
+            $('#ScreenCoordinate').text(ScreenX + ',' + ScreenY);
+        }
+        function updatejQueryInfo()
+        {
+            var jQueryVersion = $().jquery || UNKNOWN;
+            $('#jQueryVersion').text(jQueryVersion);
+        }
+        function toggleBrowserInfo()
+        {
+            $('#BrowserInfo').slideToggle();
+        }
+        function toggleScreenInfo()
+        {
+            $('#ScreenInfo').slideToggle();
+        }
+        function toggleWindowInfo() {
+            $('#WindowInfo').slideToggle();
+        }
+        function togglejQueryInfo()
+        {
+            $('#jQueryInfo').slideToggle();
+        }
+        function clear()
+        {
+            var body = $('body');
+            body.removeAttr('onclick');
+            body.removeAttr('onmousedown');
+            body.removeAttr('onmouseup');
+            body.unbind('click');
+            body.unbind('mousedown');
+            body.unbind('mouseup');
+        }
+
+        function testOnClick()
+        {
+            clear();
+            var body = $('body');
+            body.attr('onclick', 'test()');
+        }
+        function testOnMouseDown() {
+            clear();
+            var body = $('body');
+            body.attr('onmousedown', 'test()');
+        }
+        function testOnMouseUp() {
+            clear();
+            var body = $('body');
+            body.attr('onmouseup', 'test()');
+        }
+        function testClick() {
+            clear();
+            var body = $('body');
+            body.click(test);
+        }
+        function testMouseDown() {
+            clear();
+            var body = $('body');
+            body.mousedown(test);
+        }
+        function testMouseUp() {
+            clear();
+            var body = $('body');
+            body.mouseup(test);
+        }
+        function test(evt)
+        {
+            var base = Math.floor(Math.random() * 16777215);
+            var color = 2097152 >= base ? '#000000' : '#FFFFFF';
+            var bgcolor = '#' + base.toString(16).toUpperCase();            
+            try
+            {
+                evt = evt || window.event;
+                var pos = getCoordinate(evt);                
+                $('#POS').text('POS<' + pos.x + ',' + pos.y + '>RGB<' + color + ',' + bgcolor+'>');                
+            }
+            catch(ex)
+            {
+                $('#POS').text('RGB<' + color + ',' + bgcolor+'>');
+            }
+            finally
+            {
+                $('body').css('color', color);
+                $('body').css('background-color', bgcolor);
+            }
+        }
+        function getCoordinate(evt) {
+            if (evt.pageX || evt.pageY) {
+                return { x: evt.pageX, y: evt.pageY };
+            }
+            return {
+                x: evt.clientX + document.body.scrollLeft - document.body.clientLeft,
+                y: evt.clientY + document.body.scrollTop - document.body.clientTop
+            };
+        }        
+    </script>
+</head>
+<body>
+    <div id="Info">
+        <span id="POS"></span>
+        <table>            
+            <tr class="title">
+                <th><a href="javascript:;" onclick="toggleBrowserInfo()">Browser Infomation</a></th>
+                <td><a href="javascript:;" onclick="updateBrowserInfo()">Update</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table id="BrowserInfo" class="detail">
+                        <tr>
+                            <th>AppName</th>
+                            <td><span id="AppName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>AppCodeName</th>
+                            <td><span id="AppCodeName"></span></td>
+                        </tr>
+                        <tr>
+                            <th>AppVersion</th>
+                            <td><span id="AppVersion"></span></td>
+                        </tr>
+                        <tr>
+                            <th>AppMinorVersion</th>
+                            <td><span id="AppMinorVersion"></span></td>
+                        </tr>
+                        <tr>
+                            <th>UserAgent</th>
+                            <td><span id="UserAgent"></span></td>
+                        </tr>
+                        <tr>
+                            <th>OnLine</th>
+                            <td><span id="OnLine"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Platform</th>
+                            <td><span id="Platform"></span></td>
+                        </tr>
+                        <tr>
+                            <th>CpuClass</th>
+                            <td><span id="CpuClass"></span></td>
+                        </tr>
+                        <tr>
+                            <th>CookieEnabled</th>
+                            <td><span id="CookieEnabled"></span></td>
+                        </tr>
+                        <tr>
+                            <th>JavaEnabled</th>
+                            <td><span id="JavaEnabled"></span></td>
+                        </tr>
+                        <tr>
+                            <th>SystemLanguage</th>
+                            <td><span id="SystemLanguage"></span></td>
+                        </tr>
+                        <tr>
+                            <th>BrowserLanguage</th>
+                            <td><span id="BrowserLanguage"></span></td>
+                        </tr>
+                        <tr>
+                            <th>UserLanguage</th>
+                            <td><span id="UserLanguage"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="title">
+                <th><a href="javascript:;" onclick="toggleScreenInfo()">Screen Infomation</a></th>
+                <td><a href="javascript:;" onclick="updateScreenInfo()">Update</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table id="ScreenInfo" class="detail">
+                        <tr>
+                            <th>ScreenSize</th>
+                            <td><span id="ScreenSize"></span></td>
+                        </tr>
+                        <tr>
+                            <th>AvailSize</th>
+                            <td><span id="AvailSize"></span></td>
+                        </tr>
+                        <tr>
+                            <th>ColorDepth</th>
+                            <td><span id="ColorDepth"></span></td>
+                        </tr>
+                        <tr>
+                            <th>PixelDepth</th>
+                            <td><span id="PixelDepth"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="title">
+                <th><a href="javascript:;" onclick="toggleWindowInfo()">Window Infomation</a></th>
+                <td><a href="javascript:;" onclick="updateWindowInfo()">Update</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table id="WindowInfo" class="detail">
+                        <tr>
+                            <th>OuterSize</th>
+                            <td><span id="OuterSize"></span></td>
+                        </tr>
+                        <tr>
+                            <th>InnerSize</th>
+                            <td><span id="InnerSize"></span></td>
+                        </tr>
+                        <tr>
+                            <th>ScreenCoordinate</th>
+                            <td><span id="ScreenCoordinate"></span></td>
+                        </tr>
+                        <tr>
+                            <th>PageOffset</th>
+                            <td><span id="PageOffset"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr class="title">
+                <th><a href="javascript:;" onclick="togglejQueryInfo()">jQuery Infomation</a></th>
+                <td><a href="javascript:;" onclick="updatejQueryInfo()">Update</a></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table id="jQueryInfo" class="detail">
+                        <tr>
+                            <th>jQueryVersion</th>
+                            <td><span id="jQueryVersion"></span></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <ul>
+            <li><a href="javascript:;" onclick="testOnClick()">Html OnClick</a></li>
+            <li><a href="javascript:;" onclick="testOnMouseDown()">Html OnMouseDown</a></li>
+            <li><a href="javascript:;" onclick="testOnMouseUp()">Html OnMouseUp</a></li>
+            <li><a href="javascript:;" onclick="testClick()">jQuery Click</a></li>
+            <li><a href="javascript:;" onclick="testMouseDown()">jQuery MouseDown</a></li>
+            <li><a href="javascript:;" onclick="testMouseUp()">jQuery MouseUp</a></li>
+        </ul>
+    </div>
+</body>
+</html>
