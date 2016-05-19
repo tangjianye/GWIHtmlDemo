@@ -9,10 +9,17 @@
     <style type="text/css">
         body {
             margin:0;
-            padding:60px;            
+            padding:0;     
+            position:absolute;
+            left:0;
+            top:0;       
+            width:1060px;min-width:1060px;max-width:1060px;
+            height:1850px;min-height:1850px;max-height:1850px;
+            overflow:hidden;            
+            cursor:pointer;
         }
         table {
-            width: 100%;            
+            width: 960px; min-width:960px;max-width:960px;           
         }        
         table tr.title th {
             text-align:left;
@@ -29,22 +36,6 @@
             text-align:left;
             width:70%;
         }
-        #TestArea {
-            position:absolute;
-            left:0;
-            top:0;
-            margin:0;padding:0;
-            width:100%;min-width:100%;max-width:100%;
-            height:100%;min-height:100%;max-height:100%;
-            background-color:#000000;
-            color:#FFFFFF;
-            text-align:center;
-            padding-top:10%;
-        }
-        .hide {
-            display:none;
-        }
-
     </style>
     <!--[if lte IE 8]>
       <script type="text/javascript" src="jquery-1.12.3.js"></script>
@@ -60,16 +51,23 @@
         var ENABLED = 'Enabled';
         var DISABLED = 'Disabled';
         var NOT_SUPPORT = 'Not Support';
+        var click = null;
         $(document).ready(function () {
             updateBrowserInfo();
             updateScreenInfo();
             updateWindowInfo();
-            updatejQueryInfo();            
+            updatejQueryInfo();
+            $(document).mousedown(function () {
+                click = new Date().getTime();
+            });
+            $(document).mouseup(function () {
+                var now = new Date().getTime();
+                if(click)
+                {
+                    $('#TS').text((now - click).toFixed(0));
+                }
+            })
         });
-        function reload()
-        {
-            location.reload();
-        }
         function updateBrowserInfo() {
             var AppName = navigator.appName || UNKNOWN;
             var AppCodeName = navigator.appCodeName || UNKNOWN;
@@ -196,34 +194,41 @@
             clear();
             var body = $('body');
             body.attr('onclick', 'test()');
+            $('#EVT').text('Html OnClick');
         }
         function testOnMouseDown() {
             clear();
             var body = $('body');
             body.attr('onmousedown', 'test()');
+            $('#EVT').text('Html OnMouseDown');
         }
         function testOnMouseUp() {
             clear();
             var body = $('body');
             body.attr('onmouseup', 'test()');
+            $('#EVT').text('Html OnMouseUp');
         }
         function testClick() {
             clear();
             var body = $('body');
             body.click(test);
+            $('#EVT').text('jQuery Click');
         }
         function testMouseDown() {
             clear();
             var body = $('body');
             body.mousedown(test);
+            $('#EVT').text('jQuery MouseDown');
         }
         function testMouseUp() {
             clear();
             var body = $('body');
             body.mouseup(test);
+            $('#EVT').text('jQuery MouseUp');
         }
         function test(evt)
         {
+            var begin=new Date().getTime();
             var base = Math.floor(Math.random() * 16777215);
             var color = 2097152 >= base ? '#000000' : '#FFFFFF';
             var bgcolor = '#' + base.toString(16).toUpperCase();            
@@ -231,16 +236,19 @@
             {
                 evt = evt || window.event;
                 var pos = getCoordinate(evt);                
-                $('#POS').text('POS<' + pos.x + ',' + pos.y + '>RGB<' + color + ',' + bgcolor+'>');                
+                $('#POS').text(pos.x + ',' + pos.y);                
             }
             catch(ex)
             {
-                $('#POS').text('RGB<' + color + ',' + bgcolor+'>');
+                $('#POS').text(ex.message);
             }
             finally
             {
+                $('#RGB').text(color + ',' + bgcolor);
                 $('body').css('color', color);
                 $('body').css('background-color', bgcolor);
+                var ts = new Date().getTime() - begin;
+                $('#FUNTS').text(ts);
             }
         }
         function getCoordinate(evt) {
@@ -254,9 +262,9 @@
         }        
     </script>
 </head>
-<body>
+<body draggable="false">
     <div id="Info">
-        <span id="POS"></span>
+        POS=<span id="POS">X,Y</span>|RGB=<span id="RGB">#RRGGBB,#RRGGBB</span>|TS=<span id="TS">0</span>|EVT=<span id="EVT">NULL</span>|FUNTS=<span id="FUNTS">0</span>|VER=05171642
         <table>            
             <tr class="title">
                 <th><a href="javascript:;" onclick="toggleBrowserInfo()">Browser Infomation</a></th>
