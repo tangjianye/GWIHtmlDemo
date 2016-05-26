@@ -9,7 +9,7 @@ public class MainActivity extends AppWebActivity {
         super.onCreate(savedInstanceState);
         // loadUrl("file:///android_asset/htmlBlue/index.html");
         // loadUrl("file:///android_asset/htmlRed/index.html");
-        // loadUrl("file:///android_asset/index.html");
+        loadUrl("file:///android_asset/js/index.html");
 
 
         // loadUrl("http://www.baidu.com/");
@@ -24,6 +24,6 @@ public class MainActivity extends AppWebActivity {
 //        // intent.setClassName("com.android.browser","com.android.browser.BrowserActivity");
 //        startActivity(intent);
 
-        loadUrl("file:///android_asset/TEST/index.html");
+//        loadUrl("file:///android_asset/TEST/index.html");
     }
 }
